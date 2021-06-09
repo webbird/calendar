@@ -1,0 +1,25 @@
+{
+    "name": "webbird/calendar",
+    "type": "standard",
+    "description": "",
+    "license": "",
+    "require": {
+        "league/plates": "3.*",
+        "nesbot/carbon": "^2.4",
+        "league/container": "*"
+    },
+    "require-dev": {
+        "psalm/phar": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "webbird\\Calendar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "webbird\\Calendar\\": "tests/"
+        }
+    },
+    "bin": ["bin/pds-skeleton"]
+}

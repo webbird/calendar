@@ -1,0 +1,146 @@
+$off_white: #fafafa;
+$light_grey: #A39D9E;
+$dark_grey: #363b41;
+$rose: #FF8494;
+
+.container{
+    margin:100px auto;
+    width:809px;
+    .calendar{
+        width:370px;
+        box-shadow: 0px 0px 35px -16px rgba(0,0,0,0.75);
+        font-family: 'Roboto', sans-serif;
+        padding: 20px 30px;
+        display: inline-block;
+        a[href] {
+            border: 0;
+        }
+        &.light{
+            margin-left: 65px;
+            background-color: #fff;
+            color: $dark_grey;
+        }
+        &.dark{
+            margin-left: 65px;
+            color: $off_white;
+            background-image: linear-gradient(-222deg, #646464, #454545);
+        }
+        .calendar_header{
+            border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+            .header_month {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                font-size: 3rem;
+                font-weight: 900;
+                .triangle-left, .triangle-right {
+                    display: block;
+                    width: 50px;
+                    position: relative;
+                    top: 1rem;
+                }
+                .triangle-left {
+                    border-top: 10px solid transparent;
+                    border-right: 25px solid $light-grey;
+                    border-bottom: 10px solid transparent;
+                }
+                .triangle-right {
+                    border-top: 10px solid transparent;
+                    border-left: 25px solid $light-grey;
+                    border-bottom: 10px solid transparent;
+                }
+                .triangle-left:hover {
+                    border-right-color: $dark_grey;
+                }
+                .triangle-right:hover {
+                    border-left-color: $dark_grey;
+                }
+            }
+            .header_days {
+                display: grid;
+                grid-template-columns: repeat(10, 1fr);
+                justify-items: end;
+                a[href] {
+                    text-decoration: none;
+                    color: $dark_grey;
+                }
+                a.withevents {
+                    color: $rose;
+                }
+            }
+        }
+        .calendar_events{
+            color:$light_grey;
+            .event_item{
+                margin: 18px 0;
+                padding:5px;
+                cursor: pointer;
+                .ei_Dot,.ei_Time{
+                    display:inline-block;
+                }
+                .ei_Dot{
+                    border-radius:50%;
+                    width:10px;
+                    height: 10px;
+                    background-color: $light_grey;
+                    box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+                }
+                .dot_active{
+                    background-color: $rose;
+
+                }
+                .ei_Time, .ei_Title{
+                    margin-left:10px;
+                    color: $light_grey;
+                }
+                .ei_Title, .ei_Details{
+                    margin-left: 25px;
+                    font-size: .7rem;
+                }
+                .ei_Details {
+                    display: none;
+                    color: #fff;
+                    margin-top: .6rem;
+                    font-size: 1rem;
+                    transition: 5s linear;
+                }
+                &:hover{
+                    background-image: linear-gradient(-222deg, $rose, #ffa9b7);
+                    box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+                    .ei_Dot{
+                        background-color: #fff;
+                    }
+                    .ei_Time, .ei_Title{
+                        color: #fff;
+                    }
+                    .ei_Details {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+    .calendar_plan{
+        margin:20px 0 40px;
+    }
+    .cl_plan{
+        min-height: 140px;
+        background-image: linear-gradient(-222deg, $rose, #ffa9b7);
+        box-shadow: 0px 0px 52px -18px rgba(0, 0, 0, 0.75);
+        padding:30px;
+        color:#fff;
+    }
+    .cl_title{
+        font-size: 2rem;
+    }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(0.9);
+    opacity: 0; }
+  50% {
+    transform: scale(1.01);
+    opacity: 0.5; }
+  100% {
+    transform: scale(1);
+    opacity: 1; } }

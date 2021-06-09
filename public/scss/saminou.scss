@@ -1,0 +1,126 @@
+.calendar {
+	display: grid;
+	width: 100%;
+	grid-template-columns: repeat(7, minmax(20px, 1fr));
+	grid-template-rows: 20px;
+	grid-auto-rows: 20px;
+	column-gap: 10px;
+	row-gap: 15px;
+	overflow: visible;
+	padding: 50px 5px;
+    a[href] {
+        border: 0;
+    }
+    .day input[type=radio] {
+    	display: none;
+    }
+    &-container {
+    	font-family: 'Open Sans', sans-serif;
+    	width: 394px;
+    	margin: 100px auto;
+    	box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    	border-radius: 5px;
+    	overflow: visible;
+    	background-color: #333333;
+    	color: #a7a7a7;
+        .tab-content {
+        	display: none;
+        	width: 100%;
+        	min-height: 250px;
+        	float: left;
+        	box-sizing: border-box;
+        	background-color: #ffffff;
+        }
+        .schedule-list {
+        	padding: 20px;
+        	margin-left: 37px;
+        	border-left: 2px solid #cccccc;
+        	display: block;
+        }
+        .schedule-item {
+        	display: block;
+        	margin-bottom: 10px;
+        	padding: 0;
+        	clear: both;
+        	min-height: 50px;
+        	overflow: visible;
+        }
+        .time {
+        	display: block;
+        	float: left;
+        	margin-left: -41px;
+        	width: 36px;
+        	height: 36px;
+        	border: 2px solid #fd9a4a;
+        	background-color: #ffffff;
+        	color: #333;
+        	border-radius: 50%;
+        	text-align: center;
+        	padding: 0px;
+        	line-height: 25px;
+        }
+        .time span {
+        	font-size: 1em;
+        	height: 36px;
+        	line-height: 36px;
+        	margin: auto;
+        	display: block;
+        }
+        .description {
+        	display: block;
+        	float: left;
+        	width: 305px;
+        	margin-top: 10px;
+        	margin-left: 10px;
+        	color: #fd9a4a;
+        	font-size: 14px;
+        	overflow: visible;
+        }
+        .description .description-content {
+        	margin-top: 5px;
+        }
+        .description .description-content p {
+        	font-size: 12px;
+        	margin: 0;
+        	color: #c5c5c5;
+        }
+        .tab-content * {
+        	animation: scale 0.7s ease-in-out;
+        }
+        @keyframes scale {
+            0% {
+            	transform: scale(0.9);
+            	opacity: 0;
+            }
+            50% {
+            	transform: scale(1.01);
+            	opacity: 0.5;
+            }
+            100% {
+            	transform: scale(1);
+            	opacity: 1;
+            }
+        }
+    }
+    &-header {
+    	border-bottom: 1px solid #484848;
+    	text-align: center;
+    }
+    .day {
+    	text-align: center;
+    	line-height: 34px;
+    	width: 34px;
+        &-name {
+        	text-align: center;
+        	color: #5b5b5b;
+        	border-bottom: 1px solid #484848;
+            line-height: 1rem;
+        }
+    }
+    .active {
+    	border: 1px solid #98cd60;
+    	border-radius: 30px;
+    	width: 32px;
+    	height: 32px;
+    }
+}

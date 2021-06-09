@@ -1,0 +1,203 @@
+/*
+    https://codepen.io/IAmAlexJohnson/pen/ybgwQG
+*/
+
+$background-orange: #F8B500;
+$background-orange-light: #FFCC99;
+$background-green: #2ECC71;
+$light-gray: #E8E8E8;
+$event-indicator-size: 8px;
+$event-indicator-default-color: #2980B9;
+
+
+.calendar-container {
+    display: block;
+    margin: 15px auto;
+    width: 900px;
+    height: 600px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    a[href] {
+        text-decoration: none;
+        color: #aaa;
+        border: 0;
+    }
+    .calendar-base {
+        background-color: white;
+        border-radius: 20px;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        color: black;
+        height: 600px;
+        position: relative;
+        width: 900px;
+        z-index: 0;
+        .months {
+            position: relative;
+            left: 325px;
+            top: 70px;
+            word-spacing: .3rem;
+        }
+        .month-hover {
+            color: #aaa;
+            &:hover{
+                color: $background-green !important;
+            }
+        }
+        .month-color {
+            color: $background-green;
+            font-weight: 900;
+        }
+        .month-line {
+            border-color: $light-gray;
+            position: relative;
+            top: 35px;
+        }
+        .year {
+            color: $light-gray;
+            font-size: 30px;
+            float: right;
+            position: relative;
+            right: 75px;
+            top: 20px;
+            font-weight: bold;
+        }
+        .triangle-left {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-right: 10px solid $light-gray;
+            border-bottom: 5px solid transparent;
+            float: right;
+            position: relative;
+            right: 90px;
+            top: 36px;
+        }
+        .triangle-right {
+            width: 0;
+            height: 0;
+            border-top: 5px solid transparent;
+            border-left: 10px solid $light-gray;
+            border-bottom: 5px solid transparent;
+            float: right;
+            position: relative;
+            left: 42px;
+            top: 36px;
+        }
+        .triangle-left:hover {
+            border-right-color: $background-green;
+        }
+        .triangle-right:hover {
+            border-left-color: $background-green;
+        }
+        .days {
+            color: #aaa;
+            column-gap: 10px;
+            display: grid;
+            grid-auto-rows: 20px;
+            grid-template-columns: repeat(7, minmax(20px, 1fr));
+            grid-template-rows: 20px;
+            left: 325px;
+            overflow: visible;
+            position: relative;
+            row-gap: 45px;
+            top: 10px;
+            width: 50%;
+            .day {
+                float: right;
+                font-size: 18px;
+                line-height: 50px;
+                text-align: right;
+                word-spacing: 35px;
+            }
+        }
+        .event-indicator {
+            display: inline-block;
+            width: $event-indicator-size;
+            height: $event-indicator-size;
+            border-radius: 50%;
+            background-color: $event-indicator-default-color;
+            float:right;
+        }
+        .today, .current, .today a[href] {
+            color: #000;
+            font-weight: 900;
+        }
+        .today:after, .current:after {
+            content: "";
+            display: block;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: $background-green;
+            margin: -48px auto auto 17px;
+        }
+        .current:after {
+            background-color: #CCFFCC;
+        }
+        .day--disabled, .day--disabled a[href] {
+            color: $light-gray;
+            font-weight: normal;
+        }
+
+    }
+    .calendar-left {
+        width: 300px;
+        height: 600px;
+        bottom: 600px;
+        border-radius: 20px 0px 0px 20px;
+        background-color: $background-green;
+        position: relative;
+        z-index: 1;
+        color: white;
+        position: relative;
+        .num-date {
+            font-size: 6rem;
+            width: 100%;
+            text-align: center;
+            font-weight: 700;
+        }
+        .day {
+            width: 100%;
+            font-size: 2rem;
+            text-align: center;
+            position: relative;
+            bottom: 5px;
+        }
+        .current-events {
+            margin: 25px 5px 5px 5px;
+            padding: 25px 1px 1px 25px;
+            border-top: 1px solid #fff;
+            .tab-content {
+                display: none;
+                grid-template-columns: 65px auto;
+            }
+        }
+    }
+    &.orange {
+        .calendar-left {
+            background-color: $background-orange;
+        }
+        .today:after {
+            background-color: $background-orange;
+        }
+        .triangle-left:hover {
+            border-right-color: $background-orange;
+        }
+        .triangle-right:hover {
+            border-left-color: $background-orange;
+        }
+        .month-color {
+            color: $background-orange;
+        }
+        .month-hover:hover{
+            color: $background-orange !important;
+        }
+        .event-indicator {
+            background-color: $background-orange;
+        }
+        .current:after {
+            background-color: $background-orange-light;
+        }
+    }
+}
+
+@import 'tooltip';
