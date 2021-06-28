@@ -9,13 +9,13 @@ $light-gray: #E8E8E8;
 $event-indicator-size: 8px;
 $event-indicator-default-color: #2980B9;
 
-
 .calendar-container {
     display: block;
     margin: 15px auto;
     width: 900px;
     height: 600px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    position: relative;
     a[href] {
         text-decoration: none;
         color: #aaa;
@@ -145,10 +145,9 @@ $event-indicator-default-color: #2980B9;
         bottom: 600px;
         border-radius: 20px 0px 0px 20px;
         background-color: $background-green;
-        position: relative;
-        z-index: 1;
+        position: absolute;
+        top: 0;
         color: white;
-        position: relative;
         .num-date {
             font-size: 6rem;
             width: 100%;

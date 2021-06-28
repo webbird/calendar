@@ -17,6 +17,7 @@ $tt-anim-delay: 200ms;
     position: absolute;
     left: 50%;
     box-sizing: border-box;
+    z-index: 99999;
   }
   &:after {
     content: attr(data-tooltip);

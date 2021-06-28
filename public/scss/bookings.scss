@@ -1,0 +1,42 @@
+@import "legendbox";
+@import "grid";
+.calendar {
+    @include grid();
+    @include gap1();
+    table {
+        width: 100%;
+        line-height: 1em;
+        th,td {
+            padding: 0;
+            min-width: 1em;
+            border: 2px solid white;
+            position: relative;
+        }
+        td.property {
+            min-width: 10rem;
+        }
+    }
+    table tbody tr td div {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        &.bot-right-half {
+            clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+        }
+        &.top-left-half {
+            clip-path: polygon(0 0, 0% 100%, 100% 0);
+        }
+    }
+    .legend {
+        width: 100%;
+    }
+    .seasoncolor {
+        min-height:10px;
+        height:10px;
+    }
+    .free {
+        background-color: #E0FFD0;
+    }
+}

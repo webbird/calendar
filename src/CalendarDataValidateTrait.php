@@ -6,6 +6,19 @@ namespace webbird\Calendar;
 
 trait CalendarDataValidateTrait
 {
+
+    /**
+     * check if the given string is a timestamp
+     *
+     * @access  public
+     * @param   int|string $timestamp
+     * @return  bool
+     **/
+    public function isTimestamp(int|string $timestamp) : bool
+    {
+        return (ctype_digit($timestamp) && strtotime(date('Y-m-d H:i:s',(int)$timestamp)) === (int)$timestamp);
+    }   // end function isTimestamp()
+
     /**
      *
      * @access public
@@ -39,6 +52,28 @@ trait CalendarDataValidateTrait
     }   // end function validateMonth()
 
     /**
+     * validates given $date
+     * returns current date and time if $date is not valid
+     *
+     * @access public
+     * @param  int|string|\DateTime $date
+     * @return
+     **/
+    public function validateTimestamp(int|string|\DateTime $date) : \DateTime
+    {
+        if($date instanceof \DateTime) {
+            return $date;
+        } else {
+            if($this->isTimestamp($date)) {
+                $dt = new \DateTime();
+                $dt->setTimestamp((int)$date);
+                return $dt;
+            }
+        }
+        return new \DateTime();
+    }   // end function validateTimestamp()
+
+    /**
      *
      * @access public
      * @return
@@ -53,6 +88,18 @@ trait CalendarDataValidateTrait
             }
         }
     }   // end function validateYear()
-    
+
+    /**
+     *
+     * @access public
+     * @return
+     **/
+    public function validateRGB(string $rgb) : string
+    {
+        if(preg_match('^(\#[\da-f]{3}|\#[\da-f]{6}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$', $rgb)) {
+            return $rgb;
+        }
+        return '#ccc';
+    }   // end function validateRGB()
     
 }

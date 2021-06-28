@@ -6,20 +6,20 @@ namespace webbird\Calendar;
 
 use \Carbon\Carbon as Carbon;
 
-class Event
+class Season
 {
     use PropertyGeneratorTrait;
     use CommonUtilsTrait;
     use CalendarDataValidateTrait;
 
-    /** @var string $title - event title */
+    /** @var string $title - season name / title */
     protected string $title;
-    /** @var \DateTime $startdate - event start date and time */
+    /** @var \DateTime $startdate - start date */
     protected \DateTime $startdate;
-    /** @var \DateTime $enddate - event end date and time */
+    /** @var \DateTime $enddate - end date */
     protected \DateTime $enddate;
-    /** @var Season $season - for events that belong to a season */
-    protected Season $season;
+    /** @var string $cssclass */
+    protected string $cssclass;
 
     /**
      * constructor
@@ -43,24 +43,4 @@ class Event
         $this->getParameters($optional);
     }   // end function __construct()
 
-    /**
-     *
-     * @access public
-     * @return
-     **/
-    public function isFirstDay(\DateTime $date) : bool
-    {
-        return $date == $this->startdate;
-    }   // end function isFirstDay()
-
-    /**
-     *
-     * @access public
-     * @return
-     **/
-    public function isLastDay(\DateTime $date) : bool
-    {
-        return $date == $this->enddate;
-    }   // end function isLastDay()
-    
 }

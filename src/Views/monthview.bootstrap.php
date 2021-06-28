@@ -3,7 +3,7 @@
         <h1><?= $dt->localeMonth ?></h1>
         <p><?= $dt->year ?> </p>
     </div>
-    <div class="calendar">
+    <div class="calendar grid">
         <?php foreach($daynames as $day): ?>
         <span class="day-name"><?=$day?></span>
         <?php endforeach; $row = 2; foreach ($period as $date): ?>

@@ -81,17 +81,17 @@ class Calendar
      * @access public
      * @return
      **/
-    public function getEventCount(\DateTime $date)
+    public function getEventCount(\DateTime $date) : int
     {
         return count($this->getEventsForDay($date));
-    }
+    }   # end function getEventCount
 
     /**
      *
      * @access public
      * @return
      **/
-    public function getEventsForDay(\DateTime $date)
+    public function getEventsForDay(\DateTime $date) : array
     {
         $result = array();
         $dt = Carbon::createMidnightDate($date->year,$date->month,$date->day);
@@ -103,6 +103,7 @@ class Calendar
                     $result[] = $e;
                 }
             }
+# !!!!! TODO: Sortierung klappt noch nicht zuverlaessig (dayview) !!!!!!!!!!!!!!
             // sort events by time
             usort(
                 $result,
@@ -119,7 +120,7 @@ class Calendar
      * @access public
      * @return
      **/
-    public function hasEvent(\DateTime $date)
+    public function hasEvent(\DateTime $date) : bool
     {
         return count($this->getEventsForDay($date))>0;
     }   // end function hasEvent()
@@ -254,7 +255,7 @@ class Calendar
      * @access public
      * @return
      **/
-    public function withSubtitle(string $title)
+    public function withSubtitle(string $title) : object
     {
         $this->subtitle = $title;
         return $this;
@@ -265,7 +266,7 @@ class Calendar
      * @access public
      * @return
      **/
-    public function withTitle(string $title)
+    public function withTitle(string $title) : object
     {
         $this->title = $title;
         return $this;

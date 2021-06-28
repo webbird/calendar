@@ -2,6 +2,8 @@
     https://codepen.io/knyttneve/pen/QVqyNg
 */
 
+@import "grid";
+
 $border-left-red: #990000;
 $background-red: #FFCCCC;
 $border-left-orange: #FF6600;
@@ -14,13 +16,7 @@ $border-left-blue: #333366;
 $background-blue: #99CCCC;
 
 .calendar {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
-  grid-template-rows: 50px;
-  grid-auto-rows: 120px;
-  overflow: auto;
-
+  @include largegrid();
   &-container {
     width: 90%;
     margin: auto;
