@@ -22,9 +22,11 @@ class BookingsCalendar extends Calendar
     protected array $status     = array();
 
     /**
+     * register a property (room, house, beamer...)
      *
      * @access public
-     * @return
+     * @param  \webbird\Calendar\Property $property
+     * @return bool
      **/
     public function addProperty(\webbird\Calendar\Property $property) : bool
     {
@@ -33,9 +35,11 @@ class BookingsCalendar extends Calendar
     }   // end function addProperty()
 
     /**
+     * register a season
      *
      * @access public
-     * @return
+     * @param  \webbird\Calendar\Season $season
+     * @return bool
      **/
     public function addSeason(\webbird\Calendar\Season $season) : bool
     {
@@ -44,9 +48,12 @@ class BookingsCalendar extends Calendar
     }   // end function addSeason()
 
     /**
+     * register an array of \webbird\Calendar\Season objects at once
      *
      * @access public
-     * @return
+     * @param  array
+     * @return bool
+     * @throws UnexpectedValueException
      **/
     public function addSeasons(array $seasons) : bool
     {
@@ -63,20 +70,24 @@ class BookingsCalendar extends Calendar
     }   // end function addSeasons()
 
     /**
+     * register a booking status (booked, reserved, free, ...)
      *
      * @access public
-     * @return
+     * @param  \webbird\Calendar\BookingStatus $status
+     * @return bool
      **/
-    public function addStatus(\webbird\Calendar\BookingStatus $status)
+    public function addStatus(\webbird\Calendar\BookingStatus $status) : bool
     {
         $this->status[] = $status;
         return true;
     }   // end function addStatus()
     
     /**
+     * get properties registered so far
      *
      * @access public
-     * @return
+     * @param  bool $sorted - wether to sort the list by name; default: false
+     * @return array
      **/
     public function getProperties(?bool $sorted=false) : array
     {
@@ -100,10 +111,10 @@ class BookingsCalendar extends Calendar
      **/
     public function getSeasonForDate(\DateTime $date) : mixed
     {
-        $seasons = $this->getSeasons();
+        $ourseasons = $this->getSeasons();
         $dt = Carbon::createMidnightDate($date->year,$date->month,$date->day);
-        if(is_array($seasons) && !empty($seasons)) {
-            foreach($seasons as $s) {
+        if(!empty($ourseasons)) {
+            foreach($ourseasons as $s) {
                 $d1 = Carbon::createMidnightDate($s->startdate->year,$s->startdate->month,$s->startdate->day);
                 $d2 = Carbon::createMidnightDate($s->enddate->year,$s->enddate->month,$s->enddate->day);
                 if($dt->between($d1, $d2, true)) {
