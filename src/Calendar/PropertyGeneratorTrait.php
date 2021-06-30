@@ -19,16 +19,19 @@ trait PropertyGeneratorTrait
                     $property, $methodName
                 ));
             }
+            $result = false;
             switch($matches[1]) {
                 case 'set':
                     $this->$property = $arguments[0];
-                    return true;
+                    $result = true;
+                    break;
                 case 'get':
                     if (property_exists($this, $property)) {
-                        return $this->{$property};
+                        $result = $this->{$property};
                     } else {
-                        return null;
+                        $result = null;
                     }
+                    break;
                 case 'default':
                     throw new \UnexpectedValueException(sprintf(
                         'Method [%s] does not exist',
@@ -36,7 +39,7 @@ trait PropertyGeneratorTrait
                     ));
             }
         }
-        return false;
+        return $result;
     }
 
     /**
@@ -48,7 +51,7 @@ trait PropertyGeneratorTrait
         if (method_exists($this, $method)) {
             $reflection = new \ReflectionMethod($this, $method);
             if (!$reflection->isPublic()) {
-                throw new \RuntimeException("The called method is not public.");
+                throw new \BadMethodCallException("The called method is not public.");
             }
         }
         if (property_exists($this, $property)) {
@@ -65,13 +68,11 @@ trait PropertyGeneratorTrait
         if (method_exists($this, $method)) {
             $reflection = new \ReflectionMethod($this, $method);
             if (!$reflection->isPublic()) {
-                throw new \RuntimeException("The called method is not public.");
+                throw new \BadMethodCallException("The called method is not public.");
             }
         }
-        # to allow optional properties, we do not check vor existance here
-        #if (property_exists($this, $property)) {
-            $this->$property = $value;
-        #}
+        # to allow optional properties, we do not check for existance here
+        $this->$property = $value;
     }
 
     /**
