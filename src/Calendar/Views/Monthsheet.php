@@ -32,15 +32,7 @@ class Monthsheet extends \webbird\Calendar\View
         $this->validateDay();
 
         $e = $this->getEngine(__DIR__);
-
         $dt = Carbon::createMidnightDate(intval($this->year), intval($this->month), 1);
-
-        // BEWARE: If the start of the first week in month is in last month,
-        // this will change the current month!
-        // Example: Month is 2021-04
-        // BEFORE:  startOfMonth will be 2021-04-01
-        // AFTER:   startOfMonth will be 2021-03-01 !!!
-        #$dt->startOfWeek(Carbon::MONDAY);
 
         $period = CarbonPeriod::create(
             $dt->copy()->startOfWeek(),
@@ -48,12 +40,19 @@ class Monthsheet extends \webbird\Calendar\View
         );
 
         // handle next/prev
-        if(isset($_REQUEST['np']) && in_array($_REQUEST['np'], array('next','previous'))) {
-            if($_REQUEST['np'] == 'next') {
+        $np = filter_input(type: INPUT_GET, var_name: 'np', filter:  FILTER_SANITIZE_STRING );
+        switch($np) {
+            case 'next':
+            case 'n':
                 $dt->addMonths(1);
-            } else {
+                break;
+            case 'previous':
+            case 'p':
+            case 'prev':
                 $dt->addMonths(-1);
-            }
+                break;
+            default:
+                break;
         }
 
         $data = array(
