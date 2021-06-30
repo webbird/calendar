@@ -53,15 +53,16 @@ class Calendar
      **/
     public function addEvent(Event $event) : bool
     {
-        //$event->startdate->format('U')
         $this->events[] = $event;
         return true;
     }   // end function addEvent()
 
     /**
+     * retrieves all categories from all events registered so far and returns
+     * them as an array of category names
      *
      * @access public
-     * @return
+     * @return array
      **/
     public function getEventCategories() : array
     {
@@ -77,9 +78,10 @@ class Calendar
     }   // end function getEventCategories()
     
     /**
+     * returns the number of events that are registered for the given DateTime
      *
      * @access public
-     * @return
+     * @return int
      **/
     public function getEventCount(\DateTime $date) : int
     {
@@ -87,9 +89,11 @@ class Calendar
     }   # end function getEventCount
 
     /**
+     * extracts all events that are registerd for the given DateTime and returns
+     * them as an array of \webbird\Calendar\Event objects
      *
      * @access public
-     * @return
+     * @return array
      **/
     public function getEventsForDay(\DateTime $date) : array
     {
@@ -239,7 +243,6 @@ class Calendar
      **/
     public function withLocale(string $lc) : object
     {
-        $oldlc = setlocale(LC_TIME, 0);
         $result = setlocale(LC_TIME, $lc);
         if (false===$result) {
             throw new \InvalidArgumentException(
