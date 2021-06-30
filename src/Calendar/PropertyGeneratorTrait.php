@@ -11,10 +11,11 @@ trait PropertyGeneratorTrait
      */
     public function __call(string $methodName, array $arguments): mixed
     {
+        $matches = [];
         if (preg_match('~^(set|get)([A-Z])(.*)$~', $methodName, $matches)) {
             $property = strtolower($matches[2]) . $matches[3];
             if (!property_exists($this, $property)) {
-                throw new \UnexpectedValueException(sprintf(
+                throw new \UnexpectedValueException(\sprintf(
                     'Property [%s] does not exist (method: %s)',
                     $property, $methodName
                 ));
@@ -26,13 +27,11 @@ trait PropertyGeneratorTrait
                     $result = true;
                     break;
                 case 'get':
-                    if (property_exists($this, $property)) {
-                        $result = $this->{$property};
-                    } else {
-                        $result = null;
-                    }
+                    $result = property_exists($this, $property)
+                            ? $this->{$property}
+                            : \null;
                     break;
-                case 'default':
+                default:
                     throw new \UnexpectedValueException(sprintf(
                         'Method [%s] does not exist',
                         $methodName
