@@ -6,7 +6,8 @@
     "require": {
         "league/plates": "3.*",
         "nesbot/carbon": "^2.4",
-        "league/container": "*"
+        "league/container": "*",
+        "webbird/common": "*"
     },
     "require-dev": {
         "psalm/phar": "*"

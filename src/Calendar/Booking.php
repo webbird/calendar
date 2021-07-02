@@ -11,7 +11,7 @@ class Booking extends Event
     /**
      *
      * @access public
-     * @return
+     * @return array
      **/
     public function specialKeys() : array
     {
@@ -23,7 +23,7 @@ class Booking extends Event
     /**
      *
      * @access public
-     * @return
+     * @return object
      **/
     public function setStatus(\webbird\Calendar\BookingStatus $status) : object
     {
@@ -34,7 +34,7 @@ class Booking extends Event
     /**
      *
      * @access public
-     * @return
+     * @return \webbird\Calendar\BookingStatus
      **/
     public function getStatus() : BookingStatus
     {

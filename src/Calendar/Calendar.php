@@ -8,8 +8,8 @@ use \Carbon\Carbon as Carbon;
 
 class Calendar
 {
-    use PropertyGeneratorTrait;
-    use ArrayUtilsTrait;
+    use \webbird\common\PropertyGeneratorTrait;
+    use \webbird\common\ArrayUtilsTrait;
 
     const VERSION = '0.1';
 
@@ -213,6 +213,15 @@ class Calendar
         return $this;
     }   // end function withTheme()
 
+    public function getDayNames(\Carbon\Carbon $dt) : array
+    {
+        $daynames = array();
+        for ($i = 0; $i < \Carbon\CarbonInterval::getDaysPerWeek(); $i++) {
+            $daynames[] = $dt->startOfWeek()->addDays($i)->minDayName;
+        }
+        return $daynames;
+    }
+
     /**
      *
      * @access public
@@ -256,7 +265,8 @@ class Calendar
     /**
      *
      * @access public
-     * @return
+     * @param  string  $title - set subtitle
+     * @return object
      **/
     public function withSubtitle(string $title) : object
     {
@@ -267,7 +277,8 @@ class Calendar
     /**
      *
      * @access public
-     * @return
+     * @param  string  $title - set title
+     * @return object
      **/
     public function withTitle(string $title) : object
     {
@@ -278,7 +289,8 @@ class Calendar
     /**
      *
      * @access public
-     * @return
+     * @param  string  $uri - base uri to use for links
+     * @return object
      **/
     public function withURIBase(string $uri) : object
     {
@@ -289,9 +301,10 @@ class Calendar
     /**
      *
      * @access public
-     * @return
+     * @param  mixed  $optional - any optional data to be passed to renderer
+     * @return void
      **/
-    public function output(mixed ...$optional)
+    public function output(mixed ...$optional) : void
     {
         $classname = '\webbird\Calendar\Views\\'.ucfirst($this->type);
         if(class_exists($classname,true)) {

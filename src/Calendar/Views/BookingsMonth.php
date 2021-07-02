@@ -9,7 +9,7 @@ use \Carbon\CarbonPeriod as CarbonPeriod;
 
 class BookingsMonth extends \webbird\Calendar\View
 {
-    use \webbird\Calendar\PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use \webbird\Calendar\CalendarDataValidateTrait;
     use \webbird\Calendar\CommonUtilsTrait;
 

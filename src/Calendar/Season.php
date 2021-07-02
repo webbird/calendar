@@ -8,7 +8,7 @@ use \Carbon\Carbon as Carbon;
 
 class Season
 {
-    use PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use CommonUtilsTrait;
     use CalendarDataValidateTrait;
 

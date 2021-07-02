@@ -9,7 +9,7 @@ use \Carbon\CarbonPeriod as CarbonPeriod;
 
 class Property
 {
-    use PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use CommonUtilsTrait;
 
     /** @var string $name - season name / title */

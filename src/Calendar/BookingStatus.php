@@ -6,7 +6,7 @@ namespace webbird\Calendar;
 
 class BookingStatus
 {
-    use PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use CommonUtilsTrait;
     use CalendarDataValidateTrait;
 

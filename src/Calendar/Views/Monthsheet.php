@@ -9,7 +9,7 @@ use \Carbon\CarbonPeriod as CarbonPeriod;
 
 class Monthsheet extends \webbird\Calendar\View
 {
-    use \webbird\Calendar\PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use \webbird\Calendar\CalendarDataValidateTrait;
 
     const VERSION = '0.1';
@@ -26,7 +26,7 @@ class Monthsheet extends \webbird\Calendar\View
         mixed ...$optional
     ) {
         $this->c = $c;
-        $this->optional($optional);
+        $this->getParameters($optional);
         $this->validateYear();
         $this->validateMonth();
         $this->validateDay();
@@ -56,7 +56,7 @@ class Monthsheet extends \webbird\Calendar\View
         }
 
         $data = array(
-            'daynames'  => $this->getDayNames(),
+            'daynames'  => $c->getDayNames($dt),
             'c'         => $c,
             'dt'        => $dt,
             'period'    => $period,

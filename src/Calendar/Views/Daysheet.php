@@ -9,7 +9,7 @@ use \Carbon\CarbonPeriod as CarbonPeriod;
 
 class Daysheet extends \webbird\Calendar\View
 {
-    use \webbird\Calendar\PropertyGeneratorTrait;
+    use \webbird\common\PropertyGeneratorTrait;
     use \webbird\Calendar\CalendarDataValidateTrait;
 
     const VERSION = '0.1';

@@ -8,7 +8,7 @@ use \Carbon\Carbon as Carbon;
 
 class BookingsCalendar extends Calendar
 {
-    use \webbird\Calendar\ArrayUtilsTrait;
+    use \webbird\common\ArrayUtilsTrait;
 
     const VERSION = '0.1';
 
