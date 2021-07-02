@@ -130,16 +130,6 @@ class Calendar
     }   // end function hasEvent()
 
     /**
-     *
-     * @access public
-     * @return
-     **/
-    public function getTimezone() : string
-    {
-        return $this->timezone;
-    }   // end function getTimezone()
-
-    /**
      * reset timezone to $this->orig_timezone
      *
      * @access public
@@ -197,16 +187,6 @@ class Calendar
      * @access public
      * @return
      **/
-    public function getTheme() : string
-    {
-        return $this->theme;
-    }   // end function getTheme()
-
-    /**
-     *
-     * @access public
-     * @return
-     **/
     public function withTheme(string $theme) : object
     {
         $this->theme = $theme;
@@ -222,16 +202,6 @@ class Calendar
         return $daynames;
     }
 
-    /**
-     *
-     * @access public
-     * @return
-     **/
-    public function getLayout() : string
-    {
-        return $this->layout;
-    }   // end function getLayout()
-    
     /**
      *
      * @access public
