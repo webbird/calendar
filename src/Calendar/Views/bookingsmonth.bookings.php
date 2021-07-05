@@ -6,15 +6,15 @@
         <table aria-label="Bookings for this month" role="presentation">
             <thead>
                 <tr>
-                    <th></th>
+                    <td></td>
 <?php foreach ($period as $date): ?>
-                    <th scope="col"><span><?=$date->day?></span></th>
+                    <td><span><?=$date->day?></span></td>
 <?php endforeach; ?>
                 </tr>
                 <tr>
-                    <th></th>
+                    <td></td>
 <?php foreach ($period as $date): ?>
-                    <th scope="col" class="seasoncolor" style="background-color:<?=$c->getSeasonForDate($date)->getColor()?>"></th>
+                    <td class="seasoncolor" style="background-color:<?=$c->getSeasonForDate($date)->getColor()?>"></th>
 <?php endforeach; ?>
                 </tr>
             </thead>
