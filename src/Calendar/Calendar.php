@@ -107,7 +107,6 @@ class Calendar
                     $result[] = $e;
                 }
             }
-# !!!!! TODO: Sortierung klappt noch nicht zuverlaessig (dayview) !!!!!!!!!!!!!!
             // sort events by time
             usort(
                 $result,
