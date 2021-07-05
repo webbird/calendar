@@ -3,18 +3,18 @@
         <h1><?= $dt->localeMonth . ' ' . $dt->year ?> </p>
     </div>
     <div class="calendar grid" style="grid-template-columns:80% auto">
-        <table>
+        <table aria-label="Bookings for this month" role="presentation">
             <thead>
                 <tr>
                     <th></th>
 <?php foreach ($period as $date): ?>
-                    <th><span><?=$date->day?></span></th>
+                    <th scope="col"><span><?=$date->day?></span></th>
 <?php endforeach; ?>
                 </tr>
                 <tr>
                     <th></th>
 <?php foreach ($period as $date): ?>
-                    <th class="seasoncolor" style="background-color:<?=$c->getSeasonForDate($date)->getColor()?>"></th>
+                    <th scope="col" class="seasoncolor" style="background-color:<?=$c->getSeasonForDate($date)->getColor()?>"></th>
 <?php endforeach; ?>
                 </tr>
             </thead>
