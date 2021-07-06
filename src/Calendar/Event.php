@@ -50,7 +50,7 @@ class Event
      **/
     public function isFirstDay(\DateTime $date) : bool
     {
-        return $date == $this->startdate;
+        return $date->format('Y-m-d') == $this->startdate->format('Y-m-d');
     }   // end function isFirstDay()
 
     /**
@@ -60,7 +60,7 @@ class Event
      **/
     public function isLastDay(\DateTime $date) : bool
     {
-        return $date == $this->enddate;
+        return $date->format('Y-m-d') == $this->enddate->format('Y-m-d');
     }   // end function isLastDay()
     
 }
