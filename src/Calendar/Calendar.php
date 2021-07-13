@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace webbird\Calendar;
 
 use \Carbon\Carbon as Carbon;
+use \webbird\i18n\Translator as Translator;
 
 class Calendar
 {
@@ -13,6 +14,8 @@ class Calendar
 
     const VERSION = '0.1';
 
+    /** @var object */
+    protected object $translator;
     /** @var string $orig_timezone - saves the original timezone before changing it */
     protected string $orig_timezone;
     /** @var string $timezone - saves the currently used timezone */
@@ -44,6 +47,13 @@ class Calendar
     {
         $this->orig_timezone = ini_get('date.timezone');
         $this->timezone = $this->orig_timezone;
+        $this->translator = new Translator();
+        $locale = $this->translator->getLocale();
+        $this->translator->setDefaultTextdomain('bookings');
+        $this->translator->addTranslationFile(
+                type: 'Array',
+                filename: __DIR__.'/../locales/'.$locale.'/LC_MESSAGES/bookings.php'
+        );
     }   // end function __construct()
 
     /**
@@ -143,11 +153,10 @@ class Calendar
     /**
      * set timezone to be used for your calendar
      *
-     * @access public
-     * @param  string  $timezone
-     * @return $this
+     * @param string $tz
+     * @return object
      * @throws \InvalidArgumentException
-     **/
+     */
     public function withTimezone(string $tz) : object
     {
         if (!in_array($tz, \DateTimeZone::listIdentifiers())) {
@@ -281,5 +290,13 @@ class Calendar
             $renderer->render($this,...$optional);
         }
     }   // end function output()
+    
+    public function t(string $msg, mixed ...$replacements) 
+    {
+        return $this->translator->translate(
+            message: $msg,
+            replacements: $replacements
+        );
+    }
     
 }
